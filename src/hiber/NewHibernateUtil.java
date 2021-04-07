@@ -5,6 +5,7 @@
  */
 package hiber;
 
+
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
