@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -69,6 +70,26 @@ public class JavaApplication4 {
             }
             System.out.println();
         }
-        System.out.println("Hello world");
-    } 
+        System.out.println("-------------------------------------------");
+        for(Studentyi st: stds){
+              if(st.getStatus().equals("academic_leave")){
+                  for(Gruppyi gr: grup){
+                      if(st.getGruppyi().getKodPlana()==gr.getKodPlana() && Integer.parseInt(gr.getNazvanie().split("-",2)[1])
+                              == Integer.parseInt(st.getGruppyi().getNazvanie().split("-",2)[1]) - 1 && Integer.parseInt(st.getGruppyi().getNazvanie().split("-",2)[1]) > 1){
+                        Transaction tx = s.beginTransaction();
+                        Studentyi student = (Studentyi) s.load(Studentyi.class, st.getNomerZachetki());
+                        student.setGruppyi(gr);
+                        s.update(student);
+                        tx.commit(); 
+                        break;
+                  }
+                    
+               }
+                  
+            }
+             
+        }
+            s.close();
+            sf.close();
+    }
 }
