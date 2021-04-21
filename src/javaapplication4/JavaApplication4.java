@@ -37,7 +37,7 @@ public class JavaApplication4 {
         Query query1 = s.createQuery("From Gruppyi");
         List <Studentyi> stds = query.list();
         List <Gruppyi> grup = query1.list();
-        for(Studentyi st: stds){
+        /*for(Studentyi st: stds){
             System.out.println(st.getFamiliya() + " " + st.getImya() + " " + st.getOtchestvo() +
                     " учится в группе " + st.getGruppyi().getNazvanie());
         }
@@ -88,7 +88,7 @@ public class JavaApplication4 {
                   
             }
              
-        }
+        }*/
             s.close();
             sf.close();
     }

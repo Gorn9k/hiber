@@ -35,5 +35,11 @@
         <property name="statusDate" type="date">
             <column name="StatusDate" length="10" />
         </property>
+        <set name="otsenkis" table="otsenki" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NomerZachetki" not-null="true" />
+            </key>
+            <one-to-many class="entity.Otsenki" />
+        </set>
     </class>
 </hibernate-mapping>
